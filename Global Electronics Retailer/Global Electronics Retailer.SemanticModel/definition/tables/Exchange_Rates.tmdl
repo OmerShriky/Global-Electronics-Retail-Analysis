@@ -1,0 +1,55 @@
+table Exchange_Rates
+	lineageTag: fe4e1622-e159-45ce-875c-f071077b0e5d
+
+	column Date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: df4b4100-04dc-4fc2-a496-9bd4113068d1
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 8b9ec661-a218-4575-9239-4e88c6a61343
+			defaultHierarchy: LocalDateTable_81ebdcac-7240-47e1-b034-e327e60017d8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Currency
+		dataType: string
+		lineageTag: b8c64d80-b9a0-44b6-bb37-e39f2442e62d
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Exchange
+		dataType: double
+		lineageTag: 939c7db6-8d52-4662-bcd5-507f7a387457
+		summarizeBy: sum
+		sourceColumn: Exchange
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Date Exchnge' = Exchange_Rates[Currency]&"-"&Exchange_Rates[Date].[Date]
+		lineageTag: 3ac678c3-7441-4bbc-be75-5c86f94767b2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Exchange_Rates = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Data Projects\Kaggle analysis\Global_Electronics_Retailer\Exchange_Rates.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Currency", type text}, {"Exchange", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

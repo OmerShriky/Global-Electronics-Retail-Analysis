@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Customers","Data_Dictionary","Exchange_Rates","Products","Sales","Stores"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Customers
+ref table DateTableTemplate_52f9b066-484e-4097-914c-794c608030d8
+ref table LocalDateTable_7d707853-c341-4e63-807a-52afea927f82
+ref table Data_Dictionary
+ref table Exchange_Rates
+ref table LocalDateTable_81ebdcac-7240-47e1-b034-e327e60017d8
+ref table Products
+ref table Sales
+ref table LocalDateTable_d7eabbf8-5af9-47ae-8a91-26bf205ee236
+ref table LocalDateTable_befbf127-f836-40e0-b9c4-6eb703f9e049
+ref table Stores
+ref table LocalDateTable_0f920fb1-df12-4379-98a7-9d57feebb35b
+
+ref cultureInfo en-US
+

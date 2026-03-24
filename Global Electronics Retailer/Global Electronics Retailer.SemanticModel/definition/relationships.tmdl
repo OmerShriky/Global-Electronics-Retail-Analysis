@@ -1,0 +1,47 @@
+relationship e43c937a-6068-47eb-bce3-2f85ea760675
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customers.Birthday
+	toColumn: LocalDateTable_7d707853-c341-4e63-807a-52afea927f82.Date
+
+relationship 8b9ec661-a218-4575-9239-4e88c6a61343
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Exchange_Rates.Date
+	toColumn: LocalDateTable_81ebdcac-7240-47e1-b034-e327e60017d8.Date
+
+relationship 36e1edcd-b3af-4019-bbca-d60223037296
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sales.'Order Date'
+	toColumn: LocalDateTable_d7eabbf8-5af9-47ae-8a91-26bf205ee236.Date
+
+relationship 0c9c626d-74ed-423b-aea1-89787810d888
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sales.'Delivery Date'
+	toColumn: LocalDateTable_befbf127-f836-40e0-b9c4-6eb703f9e049.Date
+
+relationship AutoDetected_ce96bd4e-74e3-4ece-a950-1f6c79e983b1
+	fromColumn: Sales.CustomerKey
+	toColumn: Customers.CustomerKey
+
+relationship AutoDetected_bc4f1020-3bc3-447a-b72c-3d1813e90e4b
+	fromColumn: Sales.ProductKey
+	toColumn: Products.ProductKey
+
+relationship 6e491858-f767-4e64-873e-86975134027e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Stores.'Open Date'
+	toColumn: LocalDateTable_0f920fb1-df12-4379-98a7-9d57feebb35b.Date
+
+relationship AutoDetected_de83549d-11ea-460b-90b9-55663c1df4e6
+	fromColumn: Sales.StoreKey
+	toColumn: Stores.StoreKey
+
+relationship 121ed9a0-0903-1cc5-8e61-e272950938fe
+	fromColumn: Sales.'Date Exchange'
+	toColumn: Exchange_Rates.'Date Exchnge'
+
+relationship 6fd906d6-d84a-252d-4939-d71221b00d98
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Stores.Country
+	toColumn: Customers.Country
+

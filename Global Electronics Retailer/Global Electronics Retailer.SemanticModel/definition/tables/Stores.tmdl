@@ -1,0 +1,66 @@
+table Stores
+	lineageTag: 6658c4be-d396-42ac-a714-8c0c6c2df508
+
+	column StoreKey
+		dataType: string
+		lineageTag: 3b70807c-d282-4ada-8a1e-5b454c39397a
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: f70d372a-0994-4a6f-846d-b061d427f55f
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 9ac5d0d7-60d8-4795-aeec-16994a0d77ee
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Square Meters'
+		dataType: int64
+		formatString: 0
+		lineageTag: b6e7b1b9-1e0b-49e9-afe5-f6c19613bcaf
+		summarizeBy: sum
+		sourceColumn: Square Meters
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Open Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f218235a-51f1-437f-8547-7c43a873c1c6
+		summarizeBy: none
+		sourceColumn: Open Date
+
+		variation Variation
+			isDefault
+			relationship: 6e491858-f767-4e64-873e-86975134027e
+			defaultHierarchy: LocalDateTable_0f920fb1-df12-4379-98a7-9d57feebb35b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Stores = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Data Projects\Kaggle analysis\Global_Electronics_Retailer\Stores.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"StoreKey", type text}, {"Country", type text}, {"State", type text}, {"Square Meters", Int64.Type}, {"Open Date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

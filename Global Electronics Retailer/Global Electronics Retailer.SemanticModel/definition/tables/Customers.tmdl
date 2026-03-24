@@ -1,0 +1,106 @@
+table Customers
+	lineageTag: 8874af91-c22f-41a6-a34e-2212f2010343
+
+	column CustomerKey
+		dataType: string
+		lineageTag: a808cc22-d08b-418b-a953-146cf4994cdf
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 13120d2d-95d0-4a41-8cc3-2fcf9ffede1f
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: d2a64cc2-a3d7-47cb-a306-58657a30da36
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 3da45faf-cd11-4e08-a3eb-cf4493eb6a2c
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'State Code'
+		dataType: string
+		lineageTag: 6b27c1d5-25c4-412a-89d2-c21fd846e28e
+		summarizeBy: none
+		sourceColumn: State Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 9db5add1-9d5c-4caf-93dd-07ed7d8d9b09
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Zip Code'
+		dataType: string
+		lineageTag: 89c77fc0-302d-47bd-b5ac-166dd3848dff
+		summarizeBy: none
+		sourceColumn: Zip Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 66b3716c-b83a-4c86-b241-4f6c3d753954
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Continent
+		dataType: string
+		lineageTag: 8bb7fd8b-3cf8-4d7e-b403-e91bd64236e1
+		summarizeBy: none
+		sourceColumn: Continent
+
+		annotation SummarizationSetBy = Automatic
+
+	column Birthday
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 0ebb6622-5d46-4be4-b2a6-5400961c1d38
+		summarizeBy: none
+		sourceColumn: Birthday
+
+		variation Variation
+			isDefault
+			relationship: e43c937a-6068-47eb-bce3-2f85ea760675
+			defaultHierarchy: LocalDateTable_7d707853-c341-4e63-807a-52afea927f82.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Customers = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Data Projects\Kaggle analysis\Global_Electronics_Retailer\Customers.csv"),[Delimiter=",", Columns=10, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CustomerKey", type text}, {"Gender", type text}, {"Name", type text}, {"City", type text}, {"State Code", type text}, {"State", type text}, {"Zip Code", type text}, {"Country", type text}, {"Continent", type text}, {"Birthday", type date}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"Birthday", type date}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

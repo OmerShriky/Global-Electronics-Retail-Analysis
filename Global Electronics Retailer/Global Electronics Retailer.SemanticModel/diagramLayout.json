@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Customers",
+          "nodeLineageTag": "8874af91-c22f-41a6-a34e-2212f2010343",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 576.41725722070828
+          },
+          "nodeIndex": "Data_Dictionary",
+          "nodeLineageTag": "dadc86ec-e053-4ab8-a7ed-7d402a3c0aa3",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 993.80527341092443,
+            "y": 0
+          },
+          "nodeIndex": "Exchange_Rates",
+          "nodeLineageTag": "fe4e1622-e159-45ce-875c-f071077b0e5d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 974.61198380978385,
+            "y": 453.80527341092431
+          },
+          "nodeIndex": "Products",
+          "nodeLineageTag": "fcd83105-23f5-47a9-854f-7a9ee484b656",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 489.11608541734688,
+            "y": 461.44260599987996
+          },
+          "nodeIndex": "Sales",
+          "nodeLineageTag": "28f0c59d-e3f9-4397-a972-578a8c748121",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 514.080637901536,
+            "y": 0
+          },
+          "nodeIndex": "Stores",
+          "nodeLineageTag": "6658c4be-d396-42ac-a714-8c0c6c2df508",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 5
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 70.95554390096882,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
